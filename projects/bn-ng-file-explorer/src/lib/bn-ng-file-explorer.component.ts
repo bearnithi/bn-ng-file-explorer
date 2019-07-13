@@ -1,14 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { BnNgFileExplorerService } from './bn-ng-file-explorer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bn-ng-file-explorer',
   templateUrl: './bn-ng-file-explorer.component.html',
   styleUrls: ['./bn-ng-file-explorer.component.scss']
 })
-export class BnNgFileExplorerComponent implements OnInit {
+export class BnNgFileExplorerComponent implements OnInit, OnDestroy {
   public _folders: Array<any> = [];
   public _type: string;
+  public showPath: boolean;
+
+  private subFolderSubscription: Subscription;
 
   @Input('file-explorer-type') set fileExplorerType(type: string) {
     this.fileExplorerService.fileExplorerType = type;
@@ -22,12 +26,12 @@ export class BnNgFileExplorerComponent implements OnInit {
 
   @Output('folder-change') folderChange = new EventEmitter<any>();
 
-  public showPath: boolean;
+
 
   constructor(public fileExplorerService: BnNgFileExplorerService) { }
 
   ngOnInit() {
-    this.fileExplorerService.subFolders$.subscribe((subFolders: any) => {
+    this.subFolderSubscription = this.fileExplorerService.subFolders$.subscribe((subFolders: any) => {
       this._folders = subFolders;
     });
 
@@ -55,6 +59,10 @@ export class BnNgFileExplorerComponent implements OnInit {
       action,
       folder
     });
+  }
+
+  ngOnDestroy() {
+    this.subFolderSubscription.unsubscribe();
   }
 
 }

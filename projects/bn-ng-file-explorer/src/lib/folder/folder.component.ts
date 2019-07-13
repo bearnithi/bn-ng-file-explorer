@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 
 @Component({
@@ -11,14 +11,11 @@ export class FolderComponent implements OnInit {
   @Input() folderIndex: any;
   @Output() action = new EventEmitter<any>();
 
-  public paths: Array<any>;
 
   constructor(private fileExplorerService: BnNgFileExplorerService) { }
 
   ngOnInit() {
-    this.fileExplorerService.pathAdded$.subscribe((paths: Array<any>) => {
-      this.paths = paths;
-    });
+
   }
 
 
