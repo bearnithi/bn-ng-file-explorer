@@ -1,0 +1,11 @@
+<div class="path-breadcrumb">
+  <a href="#" class="u-cursor-pointer pl-2">
+    Home /
+  </a>
+
+  <a href="#" *ngFor="let path of paths; let i = index;" class="u-cursor-pointer"
+    (click)="navigateByPath(i,$event)">
+    {{ path.folderName }} /
+  </a>
+
+</div>

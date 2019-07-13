@@ -1,0 +1,12 @@
+<bn-path-breadcrumb *ngIf="showPath"></bn-path-breadcrumb>
+<ul class="grid-list">
+
+  <li class="u-cursor-pointer folder" (click)="addFolder()">
+    <div class="icon">
+      <i class="fa fa-plus"></i>
+    </div>
+    <span class="folder-text">New</span>
+  </li>
+
+  <bn-folder *ngFor="let folder of _folders; let i = index" [folderIndex]="i" [folder]="folder"></bn-folder>
+</ul>

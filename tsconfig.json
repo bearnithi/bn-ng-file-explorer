@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "bn-ng-file-explorer": [
+        "dist/bn-ng-file-explorer"
+      ],
+      "bn-ng-file-explorer/*": [
+        "dist/bn-ng-file-explorer/*"
+      ]
+    }
   }
 }
