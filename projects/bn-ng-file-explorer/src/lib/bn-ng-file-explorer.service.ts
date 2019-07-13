@@ -8,6 +8,7 @@ export class BnNgFileExplorerService {
   private paths: Array<any> = [];
   public pathAdded$: Subject<any> = new Subject<any>();
   public folders$: Subject<any> = new Subject<any>();
+  public subFolders$: Subject<any> = new Subject<any>();
 
   private _folders: Array<any>;
   private subFolders: Array<any>;
@@ -45,7 +46,15 @@ export class BnNgFileExplorerService {
 
   getSubFolders() {
     this.subFolders = this._folders[this._selectedFolder].subFolders;
-    return this.subFolders || [];
+    this.subFolders$.next(this.subFolders || []);
+  }
+
+  deleteFolder(index: number) {
+    this.folders.splice(index, 1);
+  }
+
+  editFolder(index: number) {
+
   }
 
 }

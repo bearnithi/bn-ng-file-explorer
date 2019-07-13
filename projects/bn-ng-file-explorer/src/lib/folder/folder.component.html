@@ -1,10 +1,10 @@
 
 
   <li class="u-cursor-pointer folder position-relative"
-    (click)="selectFolder(i)" (dblclick)="getFolders()"
+    (click)="selectFolder()" (dblclick)="getFolders()"
     >
 
-    <div title="Delete Folder" *ngIf="folder.CanDelete && !folder.edit" (click)="deleteFolder(i)" class="delete-icon position-absolute">
+    <div title="Delete Folder" *ngIf="folder.CanDelete && !folder.edit" (click)="deleteFolder()" class="delete-icon position-absolute">
       <i class="fa fa-trash"></i>
     </div>
 
@@ -15,6 +15,6 @@
     <span class="folder-text" [hidden]="folder.edit" [attr.title]="folder.folderName"
       (dblclick)="folder.edit = true; $event.stopPropagation();">{{ folder.folderName }}</span>
 
-    <bn-rename [folder]="folder" (renamed)="editFolder()"></bn-rename>
+    <bn-rename [hidden]="!folder.edit" [folder]="folder" (renamed)="editFolder()"></bn-rename>
 
   </li>

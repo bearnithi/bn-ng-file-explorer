@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 export class FolderComponent implements OnInit {
   @Input() folder: any;
   @Input() folderIndex: any;
+  @Output() action = new EventEmitter<any>();
+
   public paths: Array<any>;
 
   constructor(private fileExplorerService: BnNgFileExplorerService) { }
@@ -22,20 +24,26 @@ export class FolderComponent implements OnInit {
 
 
 
-  deleteFolder(i) {
-
+  deleteFolder() {
+    this.fileExplorerService.deleteFolder(this.folderIndex);
+    this.action.emit('DELETED');
   }
 
-  editFolder(i) {}
-
-  selectFolder(i) {
-    this.fileExplorerService.selectFolder = i;
+  editFolder() {
+    this.folder.edit = false;
+    this.fileExplorerService.editFolder(this.folderIndex);
+    this.action.emit('UPDATED');
   }
 
-  getFolders(i: number): void {
-    this.fileExplorerService.selectFolder = i;
-    // this.fileExplorerService.path = this.folders[i];
-    // this.folders = this.fileExplorerService.getSubFolders();
+  selectFolder() {
+    this.fileExplorerService.selectFolder = this.folderIndex;
+    this.action.emit('SELECTED');
+  }
+
+  getFolders(): void {
+    this.fileExplorerService.selectFolder = this.folderIndex;
+    this.fileExplorerService.path = this.folder;
+    this.fileExplorerService.getSubFolders();
   }
 
 }
