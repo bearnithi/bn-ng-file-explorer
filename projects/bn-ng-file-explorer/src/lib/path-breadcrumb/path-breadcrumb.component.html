@@ -1,10 +1,7 @@
-<div class="path-breadcrumb">
-  <a href="#" class="u-cursor-pointer pl-2">
-    Home /
-  </a>
+<div class="path-breadcrumb" *ngIf="paths.length > 1">
 
   <a href="#" *ngFor="let path of paths; let i = index;" class="u-cursor-pointer"
-    (click)="navigateByPath(i,$event)">
+    (click)="navigateToPath(path,$event)">
     {{ path.folderName }} /
   </a>
 

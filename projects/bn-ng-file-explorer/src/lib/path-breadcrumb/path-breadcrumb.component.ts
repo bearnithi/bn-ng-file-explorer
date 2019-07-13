@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 })
 export class PathBreadcrumbComponent implements OnInit {
   public paths: Array<any> = [];
+  @Output() pathChange = new EventEmitter<any>();
 
   constructor(private fileExplorerService: BnNgFileExplorerService) { }
 
@@ -17,6 +18,9 @@ export class PathBreadcrumbComponent implements OnInit {
     });
   }
 
-  navigateByPath(i, e) {}
+  navigateToPath(path, e) {
+    e.preventDefault();
+    this.pathChange.emit(path);
+  }
 
 }

@@ -16,7 +16,6 @@ export class FolderComponent implements OnInit {
   constructor(private fileExplorerService: BnNgFileExplorerService) { }
 
   ngOnInit() {
-
     this.fileExplorerService.pathAdded$.subscribe((paths: Array<any>) => {
       this.paths = paths;
     });

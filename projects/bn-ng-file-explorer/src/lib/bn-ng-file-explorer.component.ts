@@ -24,12 +24,13 @@ export class BnNgFileExplorerComponent implements OnInit {
 
   public showPath: boolean;
 
-  constructor(private fileExplorerService: BnNgFileExplorerService) { }
+  constructor(public fileExplorerService: BnNgFileExplorerService) { }
 
   ngOnInit() {
     this.fileExplorerService.subFolders$.subscribe((subFolders: any) => {
       this._folders = subFolders;
     });
+
   }
 
   addFolder(): void {
@@ -41,7 +42,7 @@ export class BnNgFileExplorerComponent implements OnInit {
       subFolders: []
     };
 
-    this._folders.unshift(newFolder);
+    this.fileExplorerService.addFolder(newFolder);
 
     // setTimeout(() => {
     //   this.fileNameInputs.first.nativeElement.focus();

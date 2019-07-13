@@ -1,6 +1,5 @@
-<bn-path-breadcrumb *ngIf="showPath"></bn-path-breadcrumb>
+<bn-path-breadcrumb (pathChange)="fileExplorerService.changePath($event)"></bn-path-breadcrumb>
 <ul class="grid-list">
-
   <div class="folder-container">
     <li class="u-cursor-pointer folder" (click)="addFolder()">
       <div class="icon">

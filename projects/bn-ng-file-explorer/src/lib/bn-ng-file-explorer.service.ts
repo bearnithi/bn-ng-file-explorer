@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class BnNgFileExplorerService {
-  private paths: Array<any> = [];
+  private paths: Array<any> = [{ folderName: 'Home', isHome: true}];
   public pathAdded$: Subject<any> = new Subject<any>();
   public folders$: Subject<any> = new Subject<any>();
   public subFolders$: Subject<any> = new Subject<any>();
@@ -44,9 +44,31 @@ export class BnNgFileExplorerService {
     return this._selectedFolder;
   }
 
+  changePath(path) {
+    if(path.isHome) {
+      this.subFolders$.next(this._folders);
+    } else {
+      this.subFolders = path.subFolders;
+      this.subFolders$.next(this.subFolders);
+    }
+
+    const index = this.paths.indexOf(path) + 1;
+    this.paths.splice(index);
+  }
+
   getSubFolders() {
-    this.subFolders = this._folders[this._selectedFolder].subFolders;
+    this.subFolders = this.selectedPath.subFolders;
     this.subFolders$.next(this.subFolders || []);
+  }
+
+  addFolder(folder: any) {
+    if (this.selectedPath) {
+      this.subFolders.unshift(folder);
+      this.subFolders$.next(this.subFolders);
+    } else {
+      this._folders.unshift(folder);
+      this.subFolders$.next(this._folders);
+    }
   }
 
   deleteFolder(index: number) {
