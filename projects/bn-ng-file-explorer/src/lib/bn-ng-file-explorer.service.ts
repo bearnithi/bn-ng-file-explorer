@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class BnNgFileExplorerService {
-  private paths: Array<any> = [{ folderName: 'Home', isHome: true}];
+  private paths: Array<any> = [{ name: 'Home', isHome: true}];
   public pathAdded$: Subject<any> = new Subject<any>();
   public folders$: Subject<any> = new Subject<any>();
   public subFolders$: Subject<any> = new Subject<any>();

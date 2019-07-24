@@ -12,8 +12,8 @@
       <i class="fa fa-folder"></i>
     </div>
 
-    <span class="folder-text" [hidden]="folder.edit" [attr.title]="folder.folderName"
-      (dblclick)="folder.edit = true; $event.stopPropagation();">{{ folder.folderName }}</span>
+    <span class="folder-text" [hidden]="folder.edit" [attr.title]="folder.name"
+      (dblclick)="folder.edit = true; $event.stopPropagation();">{{ folder.name }}</span>
 
     <bn-rename [hidden]="!folder.edit" [folder]="folder" (renamed)="editFolder()"></bn-rename>
 

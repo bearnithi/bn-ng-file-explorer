@@ -1,0 +1,67 @@
+.file{
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 160px;
+  text-align: center;
+  justify-content: center;
+  margin: 8px;
+  cursor: pointer;
+
+  & .icon {
+      font-size: 45px;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #dedede;
+      box-shadow: 3px 3px 0.5rem #bbb;
+      color: var(--color-primary);
+      transition: all .3s;
+  }
+
+  &:hover .icon {
+      color: var(--color-tertiary) !important;
+      background: #303b47;
+      border: 1px solid #303b47;
+  }
+
+  &:hover .delete-icon {
+    color: var(--color-tertiary);
+
+    &:hover {
+      color: var(--color-danger);
+    }
+  }
+
+  & .folder-input {
+
+  }
+
+}
+
+.delete-icon, .move-icon {
+  top: 0px;
+  padding: 0 10px;
+  right: 0;
+  color: var(--color-primary);
+  font-size: 16px;
+}
+
+.move-icon {
+  left: 0;
+}
+
+.selected-folder .icon {
+  color: var(--color-tertiary) !important;
+  background: #303b47;
+  border: 1px solid #303b47;
+}
+
+.selected-folder .delete-icon {
+  color: var(--color-tertiary);
+}
+
+.folder-text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--color-primary);
+  font-weight: bold;
+}

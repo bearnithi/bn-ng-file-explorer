@@ -18,24 +18,34 @@ export class FolderComponent implements OnInit {
 
   }
 
-
-
+  /**
+   * Deletes the folder from the array
+   */
   deleteFolder() {
     this.fileExplorerService.deleteFolder(this.folderIndex);
     this.action.emit('DELETED');
   }
 
+  /**
+   * Edits the folder name and hides the input box
+   */
   editFolder() {
     this.folder.edit = false;
     this.fileExplorerService.editFolder(this.folderIndex);
     this.action.emit('UPDATED');
   }
 
+  /**
+   * Selects the folder on click
+   */
   selectFolder() {
     this.fileExplorerService.selectFolder = this.folderIndex;
     this.action.emit('SELECTED');
   }
 
+  /**
+   * get the subfolders and adds the current folder to the path.
+   */
   getFolders(): void {
     this.fileExplorerService.selectFolder = this.folderIndex;
     this.fileExplorerService.path = this.folder;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BnNgFileExplorerService } from '../bn-ng-file-explorer.service';
 
 @Component({
   selector: 'bn-file',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file.component.scss']
 })
 export class FileComponent implements OnInit {
+  @Input() file: any = {};
 
-  constructor() { }
+  constructor(public fileExplorerService: BnNgFileExplorerService) { }
 
   ngOnInit() {
+  }
+
+  selectFile() {
+
+  }
+
+  deleteFile() {
+
+  }
+
+  editFolder() {
+
   }
 
 }

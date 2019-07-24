@@ -9,8 +9,13 @@
     </li>
   </div>
 
-  <bn-folder *ngFor="let folder of _folders; let i = index"
-    [folderIndex]="i" [folder]="folder"
-    [ngClass]="{'selected-folder': selectedFolder === i}" class="folder-container"
-    (action)="publishAction($event,folder)"></bn-folder>
+  <div *ngFor="let folder of _folders; let i = index" [ngSwitch]="folder.type">
+    <bn-folder *ngSwitchCase="'FOLDER'"
+    [folderIndex]="i" [folder]="folder" [ngClass]="{'selected-folder': selectedFolder === i}"
+      class="folder-container" (action)="publishAction($event,folder)"></bn-folder>
+
+      <bn-file *ngSwitchCase="'FILE'" [file]="folder" [ngClass]="{'selected-folder': selectedFolder === i}"
+      class="folder-container"></bn-file>
+  </div>
+
 </ul>

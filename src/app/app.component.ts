@@ -8,30 +8,56 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ng-file-explorer';
   folders: Array<any> = [{
-    folderName: 'Nithi',
+    name: 'Nithi',
+    type: 'FOLDER',
     subFolders: [
       {
-        folderName: 'sub 1',
-        subFolders: [],
+        name: 'sub 1',
+        subFolders: [
+          {
+            name: 'song1.mp3',
+            type: 'FILE',
+            parentFolder: ''
+          },
+          {
+            name: 'song2.mp3',
+            type: 'FILE',
+            parentFolder: ''
+          },
+          {
+            name: 'song3.mp3',
+            type: 'FILE',
+            parentFolder: ''
+          }
+        ],
+        type: 'FOLDER',
         parentFolder: ''
       }, {
-        folderName: 'sub 2',
+        name: 'sub 2',
         subFolders: [],
+        type: 'FOLDER',
         parentFolder: ''
       }, {
-        folderName: 'sub 3',
+        name: 'sub 3',
         subFolders: [],
+        type: 'FOLDER',
         parentFolder: ''
       }
     ],
     parentFolder: ''
   }, {
-    folderName: 'Jeff',
+    name: 'Jeff',
     subFolders: [],
+    type: 'FOLDER',
     parentFolder: ''
   }, {
-    folderName: 'Ragav',
+    name: 'Ragav',
     subFolders: [],
+    type: 'FOLDER',
+    parentFolder: ''
+  }, {
+    name: 'song.mp3',
+    type: 'FILE',
     parentFolder: ''
   }]
 }

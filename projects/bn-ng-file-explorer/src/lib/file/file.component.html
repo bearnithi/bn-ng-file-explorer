@@ -1,3 +1,17 @@
-<p>
-  file works!
-</p>
+<li class="u-cursor-pointer file position-relative" (click)="selectFile()">
+
+  <div title="Delete Folder" *ngIf="file.CanDelete && !file.edit" (click)="deleteFile()"
+    class="delete-icon position-absolute">
+    <i class="fa fa-trash"></i>
+  </div>
+
+  <div class="icon">
+    <i class="fa fa-file"></i>
+  </div>
+
+  <span class="folder-text" [hidden]="file.edit" [attr.title]="file.folderName"
+    (dblclick)="file.edit = true; $event.stopPropagation();">{{ file.name }}</span>
+
+  <bn-rename [hidden]="!file.edit" [folder]="file" (renamed)="editFolder()"></bn-rename>
+
+</li>
